@@ -1,0 +1,82 @@
+<div class="welcomePage">
+  <h1 class="slide-bottom">{{ title }}</h1>
+  <div class="guide" *ngIf="homeForm.valid">
+    <p>
+      <span class="letter1">CORRECT ANSWER: +1 POINT</span>
+      <span class="icon1"><mat-icon fontIcon="thumb_up"></mat-icon></span>
+    </p>
+
+    <p>
+      <span class="letter2">INCORRECT ANSWER: -1 POINT</span>
+      <span class="icon2"><mat-icon fontIcon="thumb_down"></mat-icon></span>
+    </p>
+
+    <p>
+      <span class="letter3">QUESTION WITHOUT ANSWER: 0 POINT</span>
+      <span class="icon3"><mat-icon fontIcon="thumbs_up_down"></mat-icon></span>
+    </p>
+  </div>
+  <form class="example-form" [formGroup]="homeForm" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+      <mat-label>Enter Your Name</mat-label>
+      <input
+        matInput
+        placeholder="Ex. Alex"
+        value=""
+        name="name"
+        formControlName="name"
+      />
+      <div
+        *ngIf="homeForm.get('name')?.invalid && homeForm.get('name')?.touched"
+        class="error-message"
+      >
+        Name is required
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose Difficulty</mat-label>
+      <mat-select name="difficulty" formControlName="difficulty">
+        <mat-option value="easy">easy </mat-option>
+        <mat-option value="medium">medium </mat-option>
+        <mat-option value="hard">hard </mat-option>
+      </mat-select>
+      <div
+        *ngIf="
+          homeForm.get('difficulty')?.invalid &&
+          homeForm.get('difficulty')?.touched
+        "
+        class="error-message"
+      >
+        Please select a difficulty
+      </div>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Choose Category</mat-label>
+      <mat-select name="favoriteCategory" formControlName="favoriteCategory">
+        <mat-option *ngFor="let category of categories" [value]="category.id">{{
+          category.name
+        }}</mat-option>
+      </mat-select>
+      <div
+        *ngIf="
+          homeForm.get('favoriteCategory')?.invalid &&
+          homeForm.get('favoriteCategory')?.touched
+        "
+        class="error-message"
+      >
+        Please select a favorite category
+      </div>
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="button"
+      color="primary"
+      [disabled]="!homeForm.valid"
+    >
+      <span> Start the game</span>
+      <mat-icon fontIcon="flag"></mat-icon>
+    </button>
+  </form>
+</div>

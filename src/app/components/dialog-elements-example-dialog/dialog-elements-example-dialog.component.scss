@@ -1,0 +1,22 @@
+.dialog-page {
+  h2,
+  .content {
+    font-family: "Anta", sans-serif;
+    text-align: center;
+    font-size: x-large;
+    font-weight: 800;
+  }
+
+  .div-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+}
+
+.classeVerde {
+  color: green;
+}
+.classeRossa {
+  color: red;
+}

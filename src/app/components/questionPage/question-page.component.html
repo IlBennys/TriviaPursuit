@@ -1,0 +1,51 @@
+<div class="questionPage">
+  <h1 class="title slide-bottom">{{ title }}</h1>
+  <form class="forms">
+    <div *ngFor="let question of questions; let i = index">
+      <h3 class="sottotit">
+        <span class="quest"> QUESTIONS {{ i + 1 }}</span>
+        <span class="icon"> <mat-icon fontIcon="lightbulb"></mat-icon></span>
+      </h3>
+      <p class="para">{{ question.question }}</p>
+      <mat-list>
+        <mat-list-item
+          class="list"
+          *ngFor="let answer of question.incorrect_answers"
+        >
+          <mat-radio-button
+            class="radios"
+            required
+            type="radio"
+            color="primary"
+            name="question{{ i }}"
+            (click)="checkAnswer(question, answer)"
+          >
+            {{ answer | uppercase }}
+          </mat-radio-button>
+        </mat-list-item>
+        <mat-list-item class="list">
+          <mat-radio-button
+            class="radios"
+            required
+            type="radio"
+            color="primary"
+            name="question{{ i }}"
+            (click)="checkAnswer(question, question.correct_answer)"
+          >
+            {{ question.correct_answer | uppercase }}
+          </mat-radio-button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+    <div class="div-but">
+      <button class="but" mat-button (click)="openDialog()">
+        <div class="div-span">
+          <span> CECK YOUR SCORE</span>
+          <span class="icon"
+            ><mat-icon fontIcon="sports_score"></mat-icon
+          ></span>
+        </div>
+      </button>
+    </div>
+  </form>
+</div>

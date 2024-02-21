@@ -1,0 +1,31 @@
+<div class="dialog-page">
+  <h2 mat-dialog-title>WELCOME TO YOUR PERSONAL SCORE!</h2>
+  <mat-dialog-content
+    class="content"
+    [ngClass]="{
+      classeVerde: totalAnswers > 0,
+      classeRossa: totalAnswers <= 0
+    }"
+  >
+    YOU SCORED: {{ totalAnswers }} POINTS
+  </mat-dialog-content>
+  <div class="div-actions">
+    <mat-dialog-actions>
+      <button mat-fab extended color="warn" (click)="closeDialog()">
+        Close <mat-icon fontIcon="close"></mat-icon>
+      </button>
+    </mat-dialog-actions>
+    <mat-dialog-actions>
+      <button
+        mat-fab
+        extended
+        color="primary"
+        routerLink="/welcome"
+        (click)="closeDialog()"
+      >
+        <mat-icon fontIcon="play_circle"></mat-icon>
+        Try Again
+      </button>
+    </mat-dialog-actions>
+  </div>
+</div>
